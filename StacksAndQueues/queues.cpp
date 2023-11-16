@@ -2,16 +2,16 @@
 using namespace std;
 
 class CustomQueues {
-public:
+private:
     static const int dEFAULT_SIZE = 10;
 
-
-
+    
+protected:
     int* data;
     int end;
     int original_size;
 
-
+public:
     CustomQueues() {
         end = 0;
         data = new int[dEFAULT_SIZE];

@@ -25,6 +25,7 @@ public:
     Node* insert(int value, Node* node) {
         if(node == NULL) {
             node = new Node(value);
+           
         }
         if(value < node->value) {
             node->left = insert(value, node->left);
@@ -109,11 +110,20 @@ cout << node->value << " ";
         postOrder(node->right);
         cout << node->value << " ";
     }
+
+//     bool balanced(Node* node) {
+//     if (node == NULL) {
+//         return true;
+//     }
+//     return abs(height(node->left) - height(node->right)) <= 1 && balanced(node->left) && balanced(node->right);
+// }
 };
 
 int main() {
     int arr[] = { 5, 2, 7, 1, 4, 6, 9, 8, 3, 10 };  
     Node* n1 = new Node();
+    n1->preOrder();
+    cout<<"-----------";
     n1->populate(arr, 10);
     n1->display();
     n1->preOrder();
@@ -122,4 +132,6 @@ int main() {
     cout << endl;
     n1->postOrder();
     cout << endl;
+    // cout << n1->balanced(n1->root);
+
 }

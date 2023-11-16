@@ -2,9 +2,8 @@
 using namespace std;
 
 class DynamicQueue{
-    private:
+private:
     static const int dEFAULT_SIZE = 10;
-
 
 protected:
     int* data;
@@ -17,6 +16,7 @@ public:
         data = new int[dEFAULT_SIZE];
         original_size = dEFAULT_SIZE;
     }
+
     DynamicQueue(int size) {
         end = 0;
         data = new int[size];
@@ -24,6 +24,7 @@ public:
     }
 
     bool insert(int item) {
+
         if(isFull()) {
             int tempSize = original_size;
             original_size = original_size * 2;

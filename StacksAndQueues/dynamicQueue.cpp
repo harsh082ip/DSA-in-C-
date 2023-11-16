@@ -1,37 +1,49 @@
 #include<iostream>
 using namespace std;
 
-class CustomQueues {
-public:
+class DynamicQueue{
+    private:
     static const int dEFAULT_SIZE = 10;
 
 
-
+protected:
     int* data;
     int end;
     int original_size;
 
-
-    CustomQueues() {
+public:
+    DynamicQueue() {
         end = 0;
         data = new int[dEFAULT_SIZE];
         original_size = dEFAULT_SIZE;
     }
-    CustomQueues(int size) {
+    DynamicQueue(int size) {
         end = 0;
         data = new int[size];
         original_size = size;
     }
+
     bool insert(int item) {
         if(isFull()) {
-            return false;
+            int tempSize = original_size;
+            original_size = original_size * 2;
+            cout<< original_size << endl;
+            
+            
+            int* temp = new int[original_size * 2];
+            for(int i = 0; i< tempSize; i++) {
+                temp[i] = data[i];
+            }
+            delete[] data;
+            data = temp;
+            cout << "New Size: " << original_size << endl;
         }
         data[end] = item;
         end++;
         return true;
     }
 
-     int remove() {
+    int remove() {
         if(isEmpty()) {
             cout<< "Queue is Empty" << endl;
             return -1;
@@ -74,8 +86,13 @@ public:
 };
 
 int main() {
-    CustomQueues qs(5);
+    DynamicQueue qs(5);
     
+    qs.insert(12);
+    qs.insert(88);
+    qs.insert(65);
+    qs.insert(43);
+    qs.insert(74);
     qs.insert(12);
     qs.insert(88);
     qs.insert(65);
@@ -91,5 +108,4 @@ int main() {
     cout << "Removed Item: " << qs.remove() << endl;
 
     qs.display();
-
 }
